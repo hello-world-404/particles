@@ -26,7 +26,7 @@ window.addEventListener('mousemove', function(event){
 
 ctx.fillStyle = 'white';
 ctx.font = 'bold 11.5px Heveltica';
-ctx.fillText("Hello", 20, 20);
+ctx.fillText("Hello world, this is a demo.", 20, 20);
 ctx.globalAlpha = 0.5;
 const data = ctx.getImageData(0,0,canvas.width,canvas.height);
 
@@ -52,12 +52,6 @@ class Particle{
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let dist = Math.sqrt(dx * dx + dy* dy);
-        let fdirx = dx / dist;
-        let fdiry = dy / dist;
-        let mmdist = mouse.radius;
-        let force = (mmdist - dist) / mmdist;
-        let dirx = fdirx * force * this.density;
-        let diry = fdiry * force * this.density;
 
 
         if(dist < mouse.radius){
@@ -70,23 +64,6 @@ class Particle{
                 this.size = Math.floor(Math.random() * 22) +12;
             }, 400);
         }
-
-        /*
-        if(dist < mouse.radius){
-            this.x += dirx;
-            this.y += diry;
-        }
-        else{
-            if(this.x !== this.baseX){
-                let dx = this.x - this.baseX;
-                this.x -= dx/10;
-            }
-            if(this.y !== this.baseY){
-                let dy = this.y - this.baseY;
-                this.y -= dy/10;
-            }
-        }
-        */
     }
 }
 
