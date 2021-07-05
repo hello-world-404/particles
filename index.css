@@ -5,12 +5,18 @@
 }
 
 body{
+    padding: 10px;
     overflow: hidden;
     background-color: black;
 }
 
 canvas{
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
+    background-color: black;
+    position: relative;
+}
+
+p{
+    color: white; 
+    font-size: 44px;
 }

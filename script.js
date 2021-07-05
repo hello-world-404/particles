@@ -3,17 +3,15 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.height = window.innerHeight - 100;
+
 
 let particleArray = [];
-
-let moving = false;
-
 
 const mouse = {
     x: null,
     y: null,
-    //radius: 500
+    radius: 200
 }
 
 
@@ -21,24 +19,23 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
-    mouse.radius = 200;
     console.log(mouse.x, mouse.y);
-    moving = true;
 })
 
 
 
 ctx.fillStyle = 'white';
-ctx.font = 'bold 10px Heveltica';
-ctx.fillText("A B C D E F G H I J K L M N", 5, 10);
+ctx.font = 'bold 11.5px Heveltica';
+ctx.fillText("Hello", 20, 20);
+ctx.globalAlpha = 0.5;
 const data = ctx.getImageData(0,0,canvas.width,canvas.height);
 
 
 class Particle{
-    constructor(x,y,s){
+    constructor(x,y){
         this.x = x;
         this.y = y;
-        this.size = s;
+        this.size = 40;
         this.baseX = this.x;
         this.baseY = this.y;
         this.density = (Math.random()*50)+1;
@@ -64,6 +61,18 @@ class Particle{
 
 
         if(dist < mouse.radius){
+            if(this.size < 44 && this.size > 5){
+                this.size = Math.floor(Math.random() * 7) +3;
+            }
+        }
+        else{
+            setTimeout(() => {
+                this.size = Math.floor(Math.random() * 22) +12;
+            }, 400);
+        }
+
+        /*
+        if(dist < mouse.radius){
             this.x += dirx;
             this.y += diry;
         }
@@ -77,6 +86,7 @@ class Particle{
                 this.y -= dy/10;
             }
         }
+        */
     }
 }
 
@@ -90,8 +100,7 @@ function init(){
                 let posy = y;
                 posx *= 11;
                 posy *= 11;
-                let sz = Math.floor(Math.random() * 10) + 2;
-                particleArray.push(new Particle(posx,posy,sz));
+                particleArray.push(new Particle(posx,posy));
             }
         }
     }
@@ -104,9 +113,12 @@ function animate(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
         for(let i = 0; i < particleArray.length; i++){
             particleArray[i].draw();
-            particleArray[i].update();
+            setTimeout(() => {
+                particleArray[i].update();
+            }, 600);
         }
     requestAnimationFrame(animate);
 }
+
 
 animate();
