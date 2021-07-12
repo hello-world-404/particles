@@ -26,9 +26,9 @@ window.addEventListener('mousemove', function(event){
 
 //Display text control area
 ctx.fillStyle = 'white';
-ctx.font = 'bold 11px Heveltica';
+ctx.font = 'bold 14px Heveltica';
 ctx.fillText("Hello world", 8, 20);
-ctx.globalAlpha = 0.5;
+ctx.globalAlpha = 0.7;
 const data = ctx.getImageData(0,0,canvas.width,canvas.height);
 
 document.getElementById("rawtextconf").innerHTML = "Raw text config: " + ctx.font;
@@ -88,8 +88,8 @@ function init(){
                 let posy = y;
 
                 //Distance between each dot
-                posx *= 11;
-                posy *= 11;
+                posx *= 9;
+                posy *= 9;
 
                 particleArray.push(new Particle(posx,posy));
             }
