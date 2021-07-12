@@ -26,12 +26,18 @@ window.addEventListener('mousemove', function(event){
 
 //Display text control area
 ctx.fillStyle = 'white';
+<<<<<<< Updated upstream
 ctx.font = 'bold 14px Heveltica';
 ctx.fillText("Hello world", 8, 20);
+=======
+ctx.font = 'bold 11.5px Avenir LT STD';
+ctx.fillText("QWERTY", 8, 20);
+>>>>>>> Stashed changes
 ctx.globalAlpha = 0.7;
 const data = ctx.getImageData(0,0,canvas.width,canvas.height);
 
 document.getElementById("rawtextconf").innerHTML = "Raw text config: " + ctx.font;
+document.getElementById("particlealphaconf").innerHTML = "Particle alpha (out of 1): " + ctx.globalAlpha;
 
 class Particle{
     constructor(x,y){
@@ -40,7 +46,6 @@ class Particle{
         this.size = 40;
         this.baseX = this.x;
         this.baseY = this.y;
-        this.density = (Math.random()*50)+1;
     }
 
     draw(){
@@ -59,10 +64,10 @@ class Particle{
         if(dist < mouse.radius){
             if(this.size < 44 && this.size > 5){
                 //Controller for size of smaller particle, after the distance is smaller than the radius of the mouse.
-                //this.size = Math.floor(Math.random() * 7) +3;
-                this.size = 3;
+                this.size = Math.floor(Math.random() * 3) +2;
+                //this.size = 1.5;
 
-                document.getElementById("sparticlesizeconf").innerHTML = "Small particle size: " + this.size;
+                document.getElementById("sparticlesizeconf").innerHTML = "Small particle size (random): " + this.size;
             }
         }
         else{
@@ -71,7 +76,9 @@ class Particle{
                 //Controller for size of placeholder particles, make random to let particles have jump effect.
                 this.size = Math.floor(Math.random() * 22) +12;
 
-                document.getElementById("bparticlesizeconf").innerHTML = "Big particle size (random): " + this.size;
+                //this.size = 27;
+
+                document.getElementById("bparticlesizeconf").innerHTML = "Big particle size (uniform): " + this.size;
             }, 400);
         }
 
@@ -88,8 +95,13 @@ function init(){
                 let posy = y;
 
                 //Distance between each dot
+<<<<<<< Updated upstream
                 posx *= 9;
                 posy *= 9;
+=======
+                posx *= 12;
+                posy *= 12;
+>>>>>>> Stashed changes
 
                 particleArray.push(new Particle(posx,posy));
             }
@@ -106,7 +118,7 @@ function animate(){
             particleArray[i].draw();
             setTimeout(() => {
                 particleArray[i].update();
-            }, 600);
+            }, 0);
         }
     requestAnimationFrame(animate);
 }
