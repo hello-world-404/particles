@@ -19,17 +19,19 @@ const mouse = {
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
+    document.getElementById("mousepos").innerHTML = "Mouse position: " + mouse.x + "," +mouse.y;
     console.log(mouse.x, mouse.y);
 })
 
 
-
+//Display text control area
 ctx.fillStyle = 'white';
-ctx.font = 'bold 11.5px Heveltica';
-ctx.fillText("Hello world, this is a demo.", 20, 20);
+ctx.font = 'bold 11px Heveltica';
+ctx.fillText("Hello world", 8, 20);
 ctx.globalAlpha = 0.5;
 const data = ctx.getImageData(0,0,canvas.width,canvas.height);
 
+document.getElementById("rawtextconf").innerHTML = "Raw text config: " + ctx.font;
 
 class Particle{
     constructor(x,y){
@@ -56,14 +58,23 @@ class Particle{
 
         if(dist < mouse.radius){
             if(this.size < 44 && this.size > 5){
-                this.size = Math.floor(Math.random() * 7) +3;
+                //Controller for size of smaller particle, after the distance is smaller than the radius of the mouse.
+                //this.size = Math.floor(Math.random() * 7) +3;
+                this.size = 3;
+
+                document.getElementById("sparticlesizeconf").innerHTML = "Small particle size: " + this.size;
             }
         }
         else{
+            //延時功能，讓粒子等待一會兒之後再重新出現
             setTimeout(() => {
+                //Controller for size of placeholder particles, make random to let particles have jump effect.
                 this.size = Math.floor(Math.random() * 22) +12;
+
+                document.getElementById("bparticlesizeconf").innerHTML = "Big particle size (random): " + this.size;
             }, 400);
         }
+
     }
 }
 
@@ -75,8 +86,11 @@ function init(){
             if(data.data[(y*4*data.width) + (x*4) + 3] > 128){
                 let posx = x;
                 let posy = y;
+
+                //Distance between each dot
                 posx *= 11;
                 posy *= 11;
+
                 particleArray.push(new Particle(posx,posy));
             }
         }
