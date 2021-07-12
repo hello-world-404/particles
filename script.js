@@ -26,13 +26,8 @@ window.addEventListener('mousemove', function(event){
 
 //Display text control area
 ctx.fillStyle = 'white';
-<<<<<<< Updated upstream
 ctx.font = 'bold 14px Heveltica';
 ctx.fillText("Hello world", 8, 20);
-=======
-ctx.font = 'bold 11.5px Avenir LT STD';
-ctx.fillText("QWERTY", 8, 20);
->>>>>>> Stashed changes
 ctx.globalAlpha = 0.7;
 const data = ctx.getImageData(0,0,canvas.width,canvas.height);
 
@@ -64,10 +59,10 @@ class Particle{
         if(dist < mouse.radius){
             if(this.size < 44 && this.size > 5){
                 //Controller for size of smaller particle, after the distance is smaller than the radius of the mouse.
-                this.size = Math.floor(Math.random() * 3) +2;
-                //this.size = 1.5;
+                //this.size = Math.floor(Math.random() * 3) +2;
+                this.size = 2;
 
-                document.getElementById("sparticlesizeconf").innerHTML = "Small particle size (random): " + this.size;
+                document.getElementById("sparticlesizeconf").innerHTML = "Small particle size (uniform): " + this.size;
             }
         }
         else{
@@ -95,13 +90,8 @@ function init(){
                 let posy = y;
 
                 //Distance between each dot
-<<<<<<< Updated upstream
                 posx *= 9;
                 posy *= 9;
-=======
-                posx *= 12;
-                posy *= 12;
->>>>>>> Stashed changes
 
                 particleArray.push(new Particle(posx,posy));
             }
