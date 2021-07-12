@@ -20,15 +20,19 @@ window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
     console.log(mouse.x, mouse.y);
+    document.getElementById("mousepos").innerHTML = "Mouse position: " + mouse.x + "," +mouse.y;
 })
 
 
 
 ctx.fillStyle = 'white';
-ctx.font = 'bold 11.5px Heveltica';
-ctx.fillText("Hello world, this is a demo.", 20, 20);
-ctx.globalAlpha = 0.5;
+ctx.font = 'bold 22px Calibri';
+ctx.fillText("qh^Jkn", 20, 20);
+ctx.globalAlpha = .7;
 const data = ctx.getImageData(0,0,canvas.width,canvas.height);
+
+document.getElementById("rawtextconf").innerHTML = "Raw text config: " + ctx.font;
+document.getElementById("particlealphaconf").innerHTML = "Particle alpha (out of 1): " + ctx.globalAlpha;
 
 
 class Particle{
@@ -38,7 +42,6 @@ class Particle{
         this.size = 40;
         this.baseX = this.x;
         this.baseY = this.y;
-        this.density = (Math.random()*50)+1;
     }
 
     draw(){
@@ -56,13 +59,26 @@ class Particle{
 
         if(dist < mouse.radius){
             if(this.size < 44 && this.size > 5){
-                this.size = Math.floor(Math.random() * 7) +3;
+
+                //this.size = Math.floor(Math.random() * 7) +3;
+
+                this.size = 1.5;
+
+                document.getElementById("sparticlesizeconf").innerHTML = "Small particle size: " + this.size;
             }
         }
         else{
+            let delaytime = 0;
+            document.getElementById("delaytimeconf").innerHTML = "Particle coverage delay time (ms): " + delaytime;
+
             setTimeout(() => {
-                this.size = Math.floor(Math.random() * 22) +12;
-            }, 400);
+
+                //this.size = Math.floor(Math.random() * 22) +12;
+
+                this.size = 30;
+
+                document.getElementById("bparticlesizeconf").innerHTML = "Big particle size (Uniform): " + this.size;
+            }, delaytime);
         }
     }
 }
@@ -75,8 +91,8 @@ function init(){
             if(data.data[(y*4*data.width) + (x*4) + 3] > 128){
                 let posx = x;
                 let posy = y;
-                posx *= 11;
-                posy *= 11;
+                posx *= 9;
+                posy *= 9;
                 particleArray.push(new Particle(posx,posy));
             }
         }
@@ -92,7 +108,7 @@ function animate(){
             particleArray[i].draw();
             setTimeout(() => {
                 particleArray[i].update();
-            }, 600);
+            }, 0);
         }
     requestAnimationFrame(animate);
 }
