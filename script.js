@@ -26,8 +26,8 @@ window.addEventListener('mousemove', function(event){
 
 
 ctx.fillStyle = 'white';
-ctx.font = 'bold 22px Calibri';
-ctx.fillText("qh^Jkn", 20, 20);
+ctx.font = 'bold 14px Calibri';
+ctx.fillText("AUV&*(", 20, 20);
 ctx.globalAlpha = .7;
 const data = ctx.getImageData(0,0,canvas.width,canvas.height);
 
