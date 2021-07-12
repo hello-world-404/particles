@@ -27,7 +27,7 @@ window.addEventListener('mousemove', function(event){
 
 ctx.fillStyle = 'white';
 ctx.font = 'bold 14px Calibri';
-ctx.fillText("AUV&*(", 20, 20);
+ctx.fillText("QWERTYUIOP", 20, 20);
 ctx.globalAlpha = .7;
 const data = ctx.getImageData(0,0,canvas.width,canvas.height);
 
@@ -60,22 +60,22 @@ class Particle{
         if(dist < mouse.radius){
             if(this.size < 44 && this.size > 5){
 
-                //this.size = Math.floor(Math.random() * 7) +3;
+                //this.size = Math.floor(Math.random() * 3.5) +3;
 
                 this.size = 1.5;
 
-                document.getElementById("sparticlesizeconf").innerHTML = "Small particle size: " + this.size;
+                document.getElementById("sparticlesizeconf").innerHTML = "Small particle size(slightly random): " + this.size;
             }
         }
         else{
-            let delaytime = 0;
+            let delaytime = 400;
             document.getElementById("delaytimeconf").innerHTML = "Particle coverage delay time (ms): " + delaytime;
 
             setTimeout(() => {
 
-                //this.size = Math.floor(Math.random() * 22) +12;
+                this.size = Math.floor(Math.random() * 22) +12;
 
-                this.size = 30;
+                //this.size = 30;
 
                 document.getElementById("bparticlesizeconf").innerHTML = "Big particle size (Uniform): " + this.size;
             }, delaytime);
