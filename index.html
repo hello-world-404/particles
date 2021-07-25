@@ -5,17 +5,30 @@
         <meta lang="en">
         <meta charset="utf-8">
         <link rel="stylesheet" href="index.css">
+        <script src="tracking-min.js"></script>
+        <script src="face-min.js"></script>
     </head>
     <body>
-        <p style="color: white; font-size: 44px;">Dynamic moving text particle system demo</p>
-        <p style="font-size: 18px;">ver 1.0.0</p>
-        <p style="font-size: 18px;" id="rawtextconf"></p>
-        <p style="font-size: 18px;" id="mousepos"></p>
-        <p style="font-size:18px;" id="sparticlesizeconf"></p>
-        <p style="font-size:18px;" id="bparticlesizeconf"></p>
-        <p style="font-size: 18px;" id="delaytimeconf"></p>
-        <p style="font-size: 18px;" id="particlealphaconf"></p>
-        <canvas id="canvas"></canvas>
+        <div style="display: flex; margin: 5px;" class="conf">
+            <p style="color: white; font-size: 30px;">Moving text particles</p>
+            <p id="rawtextconf"></p>
+            <p id="mousepos"></p>
+            <p style="font-size:18px;" id="sparticlesizeconf"></p>
+            <p style="font-size:18px;" id="bparticlesizeconf"></p>
+            <p  id="delaytimeconf"></p>
+            <p  id="particlealphaconf"></p>
+            <p id="stat"></p>
+            <p id="posstat"></p>
+        </div>
+
+        <br>
+        
+        <div style="display: flex;" id="trackconf">
+            <canvas id="canvas2" width="320" height="240" style="display:none"></canvas>
+            <video style="display: inline;" width="320" height="240" id="video"autoplay loop></video>
+        </div>
+
+        <canvas style="display: inline;" id="canvas"></canvas>
         <script src="script.js"></script>
     </body>
 </html>
